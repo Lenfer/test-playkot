@@ -1,7 +1,0 @@
-{"logsource":"client","env":"prod","type":"ERROR","timestamp":"2018-02-09T11:40:40.000Z","message":"An application event log entry..","_data":{"user_id":1}}
-{"logsource":"server","programm":"app","host":"127.0.0.1","type":"ERROR","timestamp":"2003-10-11T22:14:15.003Z","message":"ERROR","_data":{}}
-{"logsource":"server","programm":"app","env":"prod","type":"WARNING","timestamp":"2003-10-11T22:14:15.003Z","message":"WARNING","_data":{"info":{"some":"data"},"data":{"some":"data"}}}
-{"type":"ERROR","timestamp":"2003-10-11T22:14:15.003Z","message":"BadRequestError: request aborted | at emitNone (events.js:105:13) | at IncomingMessage.emit (events.js:207:7) | at abortIncoming (_http_server.js:410:9) | at socketOnClose (_http_server.js:404:3) | at emitOne (events.js:120:20) | at Socket.emit (events.js:210:7) | at TCP._handle.close [as _onclose] (net.js:547:12)"}
-{"logsource":"server","programm":"app","host":"127.0.0.1","env":"prod","type":"INFO","timestamp":"2003-10-11T22:14:15.003Z","message":"INFO","_data":{"info":{}}}
-{"logsource":"server","programm":"app","host":"127.0.0.1","env":"prod","type":"INFO","timestamp":"2003-10-11T22:14:15.003Z","message":"DEBUG","_data":{"info":{}}}
-{"logsource":"client","programm":"client_app","host":"127.0.0.1","env":"prod","type":"INFO","timestamp":"2018-02-09T11:40:40.000Z","message":"An application event log entry..","_data":{"user_id":1}}

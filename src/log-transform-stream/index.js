@@ -1,5 +1,6 @@
 'use strict';
 
+const debug = require('debug')('log-transform-stream:');
 const _ = require('lodash');
 const { Transform } = require('stream');
 
@@ -40,6 +41,7 @@ class LogTransformStream extends Transform {
 
     _completeUnformattedMessage() {
         if (this._unformattedData.length) {
+            debug('complete unformatted multiline message');
             this.push({
                 message: this._unformattedData.join(' | '),
                 timestamp: _.get(this._lastLogMessage, 'timestamp') || (new Date()).toISOString(),
@@ -51,16 +53,20 @@ class LogTransformStream extends Transform {
 
 
     _transform(chunk, enc, cb) {
+        debug('start transform input chunk');
         // Разделим входящий кусок данных на строки
         // тут есть возможность, что при сливание данных из нескольких потоков в один трансформер, произойдет
         // конфликт, что незаконченная строка одного источника замешается в начало куска данных другого источника
         const lines = (this._uncomplitedLine + chunk).split('\n');
 
+        debug('%d lines detected', lines.length);
+
         // Обнулим незавершенную строку
         this._uncomplitedLine = '';
 
         // Если есть незаконченная строка лога, запомним ее до следующей части данных
-        if (Boolean(_.last(lines))) {
+        if (lines.length > 1 && Boolean(_.last(lines))) {
+            debug('has uncomplited line');
             this._uncomplitedLine = lines.pop();
         }
 
@@ -70,11 +76,15 @@ class LogTransformStream extends Transform {
             if (!line) {
                 return;
             }
+
+            debug('Check format for line: %s', line);
+
             // Определим формат и выполним преобразование
             switch (true) {
 
                 // Обработка для формата RFC5424
                 case IS_RFC5424.test(line):
+                    debug('RFC5424 line');
                     // Сформируем сообщение лога из многострочного неформатированного кускав (если есть такой)
                     this._completeUnformattedMessage();
                     this._lastLogMessage = convertRfc5424(line);
@@ -83,6 +93,7 @@ class LogTransformStream extends Transform {
 
                 // Обработка дkz JSON формата
                 case IS_JSON.test(line):
+                    debug('JSON line');
                     // Сформируем сообщение лога из многострочного неформатированного кускав (если есть такой)
                     this._completeUnformattedMessage();
                     this._lastLogMessage = convertJson(line);
@@ -90,6 +101,7 @@ class LogTransformStream extends Transform {
 
                 // Поведение по умолчанию
                 default:
+                    debug('unformatted line');
                     this._unformattedData.push(line.trim());
             }
         });
@@ -99,21 +111,3 @@ class LogTransformStream extends Transform {
 
 
 module.exports = LogTransformStream;
-
-
-// /**
-//  * NEASTTTTTTTTT
-//  */
-// const { createSourceStream } = require('_/transport');
-// const sourceConfig = {
-//     type: 'file',
-//     path: '../../data/from.txt'
-// };
-// const source = createSourceStream(sourceConfig);
-// const source2 = createSourceStream(sourceConfig);
-// const logTrans = new LogTransformer()
-//
-//
-// // source.stream.pipe(logTrans);
-// source2.stream.pipe(logTrans);
-// logTrans.pipe(process.stdout);

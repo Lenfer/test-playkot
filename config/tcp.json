@@ -1,11 +1,11 @@
 {
     "source": {
-        "type": "file",
-        "path": "data/from.txt"
+        "type": "tcp",
+        "port": "1377"
     },
     "target": {
-        "type": "file",
-        "path": "data/to.txt"
+        "type": "tcp",
+        "port": "1378"
     },
     "transform": {
         "filters": {
