@@ -1,0 +1,10 @@
+{
+    "source": {
+        "type": "file",
+        "path": "data/from.txt"
+    },
+    "target": {
+        "type": "file",
+        "path": "data/to.txt"
+    }
+}
