@@ -1,12 +1,12 @@
-const fs = require('fs');
-const Abstract = require('./abstract');
+'use strict';
 
+const { WriteStream } = require('fs');
 
 /**
  * Выходной поток в виде файла
  * @class
  */
-class FileTarget extends Abstract {
+class FileTarget extends WriteStream {
 
     /**
      * @constructor
@@ -15,8 +15,7 @@ class FileTarget extends Abstract {
      */
     constructor(config) {
         const { path } = config;
-        super(config);
-        this.stream = fs.createWriteStream(path, {
+        super(path, {
             flags: 'w',
             encoding: 'utf8',
         });

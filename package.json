@@ -1,10 +1,10 @@
 {
   "name": "nodejs-test",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Playkot test task for node.js developers",
   "main": "index.js",
   "scripts": {
-    "test": "node test/index.js",
+    "test": "ava -v src/*/tests",
     "postinstall": "rm -f \"./node_modules/_\" && ln -s \"./../src/\" \"./node_modules/_\"",
     "start": "node app.js"
   },
@@ -16,6 +16,12 @@
   "license": "ISC",
   "dependencies": {
     "config": "1.30.0",
+    "debug": "3.1.0",
+    "js-object-transform": "1.1.1-0",
+    "lodash": "4.17.5",
     "nsyslog-parser": "0.8.1"
+  },
+  "devDependencies": {
+    "ava": "0.25.0"
   }
 }

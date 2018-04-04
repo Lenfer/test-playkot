@@ -1,14 +1,12 @@
 'use strict';
 
-const fs = require('fs');
-const Abstract = require('./abstract');
-
+const { ReadStream } = require('fs');
 
 /**
  * Входной поток в виде файла
  * @class
  */
-class FileSource extends Abstract {
+class FileSource extends ReadStream {
 
     /**
      * @constructor
@@ -17,8 +15,7 @@ class FileSource extends Abstract {
      */
     constructor(config) {
         const { path } = config;
-        super(config);
-        this.stream = fs.createReadStream(path, {
+        super(path, {
             flags: 'r',
             encoding: 'utf8',
         });
