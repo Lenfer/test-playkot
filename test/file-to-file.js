@@ -2,17 +2,21 @@
 
 const assert = require('assert');
 const { readFileSync } = require('fs');
-const Config = require('../config/file-to-file.json');
-const Source = require('../transport/file-source');
-const Target = require('../transport/file-target');
 
-const source = new Source(Config.source);
-const target = new Target(Config.target);
+const config = require('config');
+const sourceFile = config.get('source');
+const targetFile = config.get('target');
+
+const { createSourceStream, createTargetStream } = require('_/transport');
+const source = createSourceStream(sourceFile);
+const target = createTargetStream(targetFile);
 
 target.stream.on('unpipe', () => {
-  const original = readFileSync(Config.source.path);
-  const copy = readFileSync(Config.target.path);
-  assert.equal(original.length, copy.length, 'Copy size is not equal original');
-  console.log('Test passed');
+    const original = readFileSync(sourceFile.path);
+    const copy = readFileSync(targetFile.path);
+
+    assert.equal(original.length, copy.length, 'Copy size is not equal original');
+    console.log('Test passed');
 });
+
 source.stream.pipe(target.stream);

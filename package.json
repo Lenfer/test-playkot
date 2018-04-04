@@ -4,12 +4,18 @@
   "description": "Playkot test task for node.js developers",
   "main": "index.js",
   "scripts": {
-    "test": "node test/index.js"
+    "test": "node test/index.js",
+    "postinstall": "rm -f \"./node_modules/_\" && ln -s \"./../src/\" \"./node_modules/_\"",
+    "start": "node app.js"
   },
   "keywords": [
     "test",
     "playkot"
   ],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "config": "1.30.0",
+    "nsyslog-parser": "0.8.1"
+  }
 }
