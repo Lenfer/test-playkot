@@ -43,7 +43,7 @@ const rules = {
 
         // Подмешаем структуированные данные
         return _.reduce(source.structuredData, (acc, obj) => {
-            const key = obj.$id.match(MATCH_KEY_NAME)[1];
+            const key = obj.$id.split('@')[0];
             return _.set(acc, key, _.omit(obj, ['$id', 'env']))
         }, output);
     }

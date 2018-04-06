@@ -55,7 +55,7 @@ test('RFC5424 transform', (t) => {
 });
 
 test.cb('LogTransformStream default settings', t => {
-    const etalon = require('./log-output-etalon')
+    const etalon = require('./log-output-etalon');
     const adapter = [];
     const transformer = new LogTransformStream();
     const source = fs.createReadStream(resolve(__dirname, './source-data.txt'), {
@@ -65,7 +65,7 @@ test.cb('LogTransformStream default settings', t => {
 
     transformer.on('data', e => adapter.push(JSON.parse(e.toString())));
     transformer.on('unpipe', e => {
-        adapter.forEach((el, idx) => t.deepEqual(el, etalon[idx]));
+        etalon.forEach((el, idx) => t.deepEqual(el, adapter[idx]));
         t.end();
     });
     source.pipe(transformer);

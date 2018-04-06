@@ -52,6 +52,11 @@
     "type": "ERROR"
   },
   {
+    "message": "BadRequestError: request aborted | at emitNone (events.js:105:13) | at IncomingMessage.emit (events.js:207:7) | at abortIncoming (_http_server.js:410:9) | at socketOnClose (_http_server.js:404:3) | at emitOne (events.js:120:20) | at Socket.emit (events.js:210:7) | at TCP._handle.close [as _onclose] (net.js:547:12)",
+    "timestamp": "2003-10-11T22:14:15.003Z",
+    "type": "ERROR"
+  },
+  {
     "_data": {
       "info": {
         "type": "server"
@@ -85,6 +90,56 @@
     "timestamp": "2003-10-11T22:14:15.003Z",
     "type": "INFO"
   },
+
+
+  {
+    "_data": {
+      "origin": {
+        "ip": [
+          "192.0.2.1",
+          "192.0.2.129"
+        ]
+      },
+      "info": {
+        "type": "server"
+      },
+      "messageid": "-",
+      "pid": "-",
+      "version": 1
+    },
+    "env": "prod",
+    "host": "127.0.0.1",
+    "logsource": "server",
+    "message": "INFO",
+    "program": "app",
+    "timestamp": "2003-10-11T22:14:15.003Z",
+    "type": "INFO"
+  },
+  {
+    "_data": {
+      "timeQuality": {
+        "tzKnown": "1",
+        "isSynced": "1",
+        "syncAccuracy": "60000000"
+      },
+      "info": {
+        "type": "server"
+      },
+      "messageid": "-",
+      "version": 1,
+      "pid": "-"
+    },
+    "env": "prod",
+    "host": "127.0.0.1",
+    "logsource": "server",
+    "message": "INFO",
+    "program": "app",
+    "timestamp": "2003-10-11T22:14:15.003Z",
+    "type": "INFO"
+  },
+
+
+
   {
     "_data": {
       "user_id": 1
@@ -96,5 +151,10 @@
     "program": "client_app",
     "timestamp": "2018-02-09T11:40:40.000Z",
     "type": "INFO"
+  },
+  {
+    "message": "BadRequestError: request aborted | at emitNone (events.js:105:13) | at IncomingMessage.emit (events.js:207:7) | at abortIncoming (_http_server.js:410:9) | at socketOnClose (_http_server.js:404:3) | at emitOne (events.js:120:20) | at Socket.emit (events.js:210:7) | at TCP._handle.close [as _onclose] (net.js:547:12)",
+    "timestamp": "2018-02-09T11:40:40.000Z",
+    "type": "ERROR"
   }
 ]

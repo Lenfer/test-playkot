@@ -17,8 +17,6 @@ const targetConfig = {
 const source = createSourceStream(sourceConfig);
 const target = createTargetStream(targetConfig);
 
-console.log(__dirname)
-
 test.cb('copy data from one file to another', t => {
     target.on('unpipe', () => {
         const original = readFileSync(sourceConfig.path);
